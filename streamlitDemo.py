@@ -35,11 +35,11 @@ def pushup_angle(a, b, c):
     return angle
 
 
-def squats_posture():
+def squats_posture(video_path):
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(video_path)
     counter = 0
     stage = None
 
@@ -222,17 +222,17 @@ def pushup_posture():
 def main():
     st.title("Posture Corrector")
 
-    # Upload video file
-    # video_file = st.file_uploader("Upload a video", type=["mp4", "avi", "mov", "mkv"])
-    #
-    # if video_file is not None:
-    #     # Save the uploaded file to a temporary file
-    #     with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
-    #         temp_file.write(video_file.read())
-    #         temp_file_path = temp_file.name
+    video_file = st.file_uploader("Upload a video", type=["mp4", "avi", "mov", "mkv"])
 
-    if st.button("Squats"):
-        squats_posture()  # Process and display the video with Mediapipe
+    if video_file is not None:
+        # Save the uploaded file to a temporary file
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
+            temp_file.write(video_file.read())
+            temp_file_path = temp_file.name
+            squats_posture(temp_file_path)
+
+    # if st.button("Squats"):
+    #     squats_posture()  # Process and display the video with Mediapipe
 
     if st.button("Pushups"):
         pushup_posture()
