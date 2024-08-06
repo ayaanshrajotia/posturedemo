@@ -119,7 +119,7 @@ def squats_posture(video_path):
 
             # Display the frame in Streamlit
             frame_placeholder.image(frame_rgb, channels='RGB', use_column_width=True)
-
+            # st.image(frame_rgb)
             if flag:
                 break
 
@@ -222,20 +222,21 @@ def pushup_posture():
 def main():
     st.title("Posture Corrector")
 
-    video_file = st.file_uploader("Upload a video", type=["mp4", "avi", "mov", "mkv"])
-
-    if video_file is not None:
-        # Save the uploaded file to a temporary file
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
-            temp_file.write(video_file.read())
-            temp_file_path = temp_file.name
-            squats_posture(temp_file_path)
+    # video_file = st.file_uploader("Upload a video", type=["mp4", "avi", "mov", "mkv"])
+    #
+    # if video_file is not None:
+    #     # Save the uploaded file to a temporary file
+    #     with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
+    #         temp_file.write(video_file.read())
+    #         temp_file_path = temp_file.name
 
     # if st.button("Squats"):
     #     squats_posture()  # Process and display the video with Mediapipe
 
     if st.button("Pushups"):
         pushup_posture()
+
+    squats_posture("0.mp4.mp4")
 
 
 if __name__ == "__main__":
