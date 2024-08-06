@@ -3,3 +3,4 @@ mediapipe
 open-cv
 numpy
 time
+opencv-python-headless
